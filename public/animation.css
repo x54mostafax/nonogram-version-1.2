@@ -1,0 +1,14 @@
+@keyframes loseHeart {
+  0% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(5%);
+  }
+  66% {
+    transform: translate(-5%);
+  }
+  100% {
+    transform: translate(0);
+  }
+}

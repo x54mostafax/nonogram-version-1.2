@@ -1,0 +1,329 @@
+* {
+  margin-left: 0;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  text-decoration: none;
+  letter-spacing: 1px;
+  list-style: none;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  color: #1d1f1d;
+  touch-action: pan-y;
+  user-select: none;
+  touch-action: pan-y;
+}
+body {
+  margin: 0;
+  /* background-color: #070013; */
+  background-color: #cacaca;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+@keyframes rool {
+  0% {
+    opacity: 0;
+    scale: 0;
+  }
+  50% {
+    opacity: 1;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 0;
+  }
+}
+.hide {
+  width: 90%;
+  height: 90%;
+  background-color: #fc0000;
+  box-shadow: 0 0 10px red;
+  border: 4px solid white;
+  border-radius: 50%;
+  position: absolute;
+  scale: 1;
+  z-index: 10;
+  opacity: 0;
+  animation: rool 0.7s 1 ease;
+}
+/*Start Screen*/
+.screen {
+  /* display: none; */
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  background: linear-gradient(rgb(22, 0, 52), rgb(1, 0, 5));
+  .container-options {
+    width: 100%;
+    height: 50vh;
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -60%);
+    padding: 50px;
+  }
+  .GameName {
+    font-size: 25px;
+    margin-bottom: 50px;
+    text-transform: capitalize;
+    color: #fefefe;
+  }
+  .options {
+    margin: auto;
+    /* border: 1px solid cyan; */
+    display: flex;
+    flex-flow: column;
+    width: 170px;
+  }
+  .option {
+    border: 1px solid white;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    background-color: #171717;
+    text-transform: capitalize;
+    cursor: pointer;
+    &:active {
+      scale: 0.98;
+    }
+  }
+}
+/*End Screen*/
+.inGame {
+  display: none;
+}
+header {
+  display: flex;
+  background-color: #b3b3b3;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  .Back {
+    border-radius: 5px;
+    padding: 2px 10px;
+    font-size: 19px;
+  }
+}
+/*End Head*/
+/*Start Heart*/
+.hearts {
+  width: max-content;
+  display: flex;
+  margin: auto;
+  border-radius: 10px;
+  top: 10px;
+}
+
+.heart {
+  margin: 5px 10px;
+  color: #d30000;
+  font-size: 40px;
+  &.lose-heart {
+    color: #a3a3a3;
+    animation: alternate-reverse loseHeart 0.5s ease-out;
+  }
+}
+
+/*End Heart*/
+
+/*Start Game*/
+.game {
+  display: grid;
+  margin: auto;
+  margin-top: 20px;
+  grid-template-rows:  auto 1fr;
+  grid-template-columns:  auto 1fr;
+  flex-flow: column;
+  width: 95vw;
+  height: 95vw;
+  /* @media (min-width: 547px) {
+    width: 75vw;
+    height: 75vh;
+  } */
+  box-sizing: border-box;
+  transition: loseHeart 1s ease infinite;
+}
+.x-axios {
+  display: grid;
+  /* grid-template-columns: repeat(15, 1fr); */
+  grid-column: 2/3;
+  gap: 4px;
+  padding: 0 2px;
+}
+.y-axios {
+  display: grid;
+  gap: 4px;
+  padding: 3px 0;
+}
+.icon {
+  background-color: #ff0000;
+  height: 100px;
+  width: 100px;
+}
+
+.game-area {
+  border-radius: 5px;
+  border: 2px solid black;
+  background-color: rgb(0, 0, 0);
+  display: grid;
+  /* flex-grow: 2; */
+  .Square {
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    color: red;
+    border: collapse;
+    font-size: 9px;
+    border: 1px solid rgba(0, 0, 0, 0.119);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .wrong {
+    &::before {
+      position: absolute;
+      content: '';
+      background-color: #37fc00;
+      width: 90%;
+      height: 90%;
+      border-radius: 50%;
+      animation: rool 1s linear 1;
+    }
+  }
+  .success {
+    background-color: #001373 !important;
+  }
+}
+.big-Square {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  border: 1px solid rgba(0, 0, 0, 0.127);
+  border: collapse;
+}
+.x,
+.y {
+  display: flex;
+  background-color: rgba(190, 190, 209, 0.512);
+  border: 1px solid rgba(190, 190, 209, 0.512);
+  border-radius: 2px;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  font-size: 10px;
+}
+.x {
+  flex-flow: column;
+  justify-content: flex-end;
+  text-align: center;
+}
+.y {
+  align-items: center;
+  text-align: left;
+  justify-content: space-around;
+}
+.finished {
+  color: #13141434;
+}
+.finishing {
+  background-color: rgba(255, 255, 255, 0.554);
+  border: 1px solid gray;
+  opacity: 0.5;
+}
+/*End Game*/
+
+/*Start SquareAndX*/
+.SquareAndX {
+  display: flex;
+  position: absolute;
+  left: 50%;
+  bottom: 0px;
+  transform: translate(-50%, -50%);
+  justify-content: space-between;
+  background-color: #999a9a;
+  border-radius: 50px;
+  width: fit-content;
+  margin: auto;
+  margin-top: 50px;
+  > span {
+    /* background-color: #b5b4b4; */
+    font-weight: bolder;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: transparent;
+    z-index: 2;
+  }
+  .icon-hidden {
+    transform: translate(100%);
+    background-color: hsl(0, 18%, 90%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.274);
+    z-index: 0;
+  }
+}
+/*End SquareAndX*/
+/*Start Messege*/
+.messege-container {
+  text-transform: capitalize;
+  background-color: rgba(21, 22, 22, 0.725);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  text-align: center;
+  display: none;
+}
+.messege {
+  background-color: #d4ceced4;
+  width: 300px;
+  height: 200px;
+  border-radius: 15px;
+  padding: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  > h1 {
+    margin-top: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
+  > p {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 10px;
+  }
+}
+button {
+  padding: 10px;
+  background-color: rgb(0, 225, 255);
+  border-radius: 10px;
+  color: #fefefe;
+  cursor: pointer;
+  margin: 10px;
+  border: none;
+}
+button:active {
+  scale: 0.99;
+}
+
+/*End Messege*/
