@@ -12,46 +12,17 @@
   color: #1d1f1d;
   touch-action: pan-y;
   user-select: none;
-  touch-action: pan-y;
+  
 }
 body {
   margin: 0;
   /* background-color: #070013; */
   background-color: #cacaca;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-}
-@keyframes rool {
-  0% {
-    opacity: 0;
-    scale: 0;
-  }
-  50% {
-    opacity: 1;
-    scale: 1;
-  }
-  100% {
-    opacity: 0;
-    scale: 0;
-  }
-}
-.hide {
-  width: 90%;
-  height: 90%;
-  background-color: #fc0000;
-  box-shadow: 0 0 10px red;
-  border: 4px solid white;
-  border-radius: 50%;
-  position: absolute;
-  scale: 1;
-  z-index: 10;
-  opacity: 0;
-  animation: rool 0.7s 1 ease;
+  height: 100vw;
+  width: 100%;
 }
 /*Start Screen*/
 .screen {
-  /* display: none; */
   position: fixed;
   left: 0;
   bottom: 0;
@@ -83,7 +54,7 @@ body {
     flex-flow: column;
     width: 170px;
   }
-  .option {
+  .option,.Exit{
     border: 1px solid white;
     padding: 5px;
     border-radius: 10px;
@@ -141,36 +112,30 @@ header {
   display: grid;
   margin: auto;
   margin-top: 20px;
-  grid-template-rows:  auto 1fr;
-  grid-template-columns:  auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr;
   flex-flow: column;
   width: 95vw;
   height: 95vw;
-  /* @media (min-width: 547px) {
-    width: 75vw;
-    height: 75vh;
-  } */
-  box-sizing: border-box;
+  box-sizing: b-box;
   transition: loseHeart 1s ease infinite;
 }
 .x-axios {
   display: grid;
   /* grid-template-columns: repeat(15, 1fr); */
   grid-column: 2/3;
-  gap: 4px;
-  padding: 0 2px;
 }
 .y-axios {
   display: grid;
-  gap: 4px;
-  padding: 3px 0;
+  /* grid-template-rows: repeat(15, 1fr); */
+  justify-content: end;
+  /* background-color: #e1e1e1; */
 }
 .icon {
   background-color: #ff0000;
   height: 100px;
   width: 100px;
 }
-
 .game-area {
   border-radius: 5px;
   border: 2px solid black;
@@ -178,7 +143,6 @@ header {
   display: grid;
   /* flex-grow: 2; */
   .Square {
-    position: relative;
     background-color: rgb(255, 255, 255);
     color: red;
     border: collapse;
@@ -188,17 +152,6 @@ header {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-  }
-  .wrong {
-    &::before {
-      position: absolute;
-      content: '';
-      background-color: #37fc00;
-      width: 90%;
-      height: 90%;
-      border-radius: 50%;
-      animation: rool 1s linear 1;
-    }
   }
   .success {
     background-color: #001373 !important;
@@ -214,9 +167,8 @@ header {
 .x,
 .y {
   display: flex;
-  background-color: rgba(190, 190, 209, 0.512);
-  border: 1px solid rgba(190, 190, 209, 0.512);
-  border-radius: 2px;
+  background-color: rgba(191, 191, 204, 0.512);
+  border-radius: 100px;
   color: rgb(0, 0, 0);
   font-weight: 500;
   font-size: 10px;
@@ -228,25 +180,18 @@ header {
 }
 .y {
   align-items: center;
-  text-align: left;
+  flex-grow: 1;
   justify-content: space-around;
-}
-.finished {
-  color: #13141434;
-}
-.finishing {
-  background-color: rgba(255, 255, 255, 0.554);
-  border: 1px solid gray;
-  opacity: 0.5;
 }
 /*End Game*/
 
 /*Start SquareAndX*/
 .SquareAndX {
+  scale: 1.2;
   display: flex;
-  position: absolute;
+  position: fixed;
   left: 50%;
-  bottom: 0px;
+  bottom: 10px;
   transform: translate(-50%, -50%);
   justify-content: space-between;
   background-color: #999a9a;
